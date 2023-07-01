@@ -4,7 +4,7 @@ import { NewTodo, TodosGrid } from "@/todos";
 
 
 export const metadata = {
-  title: 'Listado de Todos',
+  title: 'Server actions',
   description: 'SEO Title',
 };
 export default async function RestTodosPage() {
@@ -14,7 +14,7 @@ export default async function RestTodosPage() {
 
   return (
     <div>
-      <span className="text-6xl mb-10">Rest Todo (Estable)</span>
+      <span className="text-6xl mb-10">Server Actions (Alpha)</span>
       <div className="w-full px-3 mx-5 mb-5">
         <NewTodo />
       </div>
