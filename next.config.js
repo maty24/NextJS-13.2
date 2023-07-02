@@ -7,6 +7,10 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
+                hostname: 'cdnb.20m.es'
+            },
+            {
+                protocol: 'https',
                 hostname: 'tailus.io'
             }
         ]

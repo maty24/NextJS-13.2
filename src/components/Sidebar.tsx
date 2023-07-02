@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { CiLogout } from 'react-icons/ci';
 import { SidebarItem } from './SidebarItem';
-import { IoCalendarOutline, IoCheckboxOutline, IoCodeWorking, IoListOutline } from 'react-icons/io5';
+import { IoBasketOutline, IoCalendarOutline, IoCheckboxOutline, IoCodeWorking, IoListOutline } from 'react-icons/io5';
 
 const menuItems = [
     {
@@ -25,6 +25,11 @@ const menuItems = [
         title: 'Cookies',
         path: '/dashboard/cookies'
     },
+    {
+        icon: <IoBasketOutline />,
+        title: 'Productos',
+        path: '/dashboard/products'
+    },
 
 ]
 
@@ -37,7 +42,7 @@ export const Sidebar = () => {
                     {/* TODO: Next/Link hacia dashboard */}
                     <Link href="#" title="home">
                         {/* Next/Image */}
-                        <Image src="https://tailus.io/sources/blocks/stats-cards/preview/images/logo.svg"
+                        <Image src="https://cdnb.20m.es/sites/30/2022/04/Colo-ColoOK.jpg"
                             className="w-32"
                             alt="tailus logo"
                             width={150}
@@ -49,14 +54,14 @@ export const Sidebar = () => {
                 <div className="mt-8 text-center">
 
                     <Image
-                        src="https://tailus.io/sources/blocks/stats-cards/preview/images/second_user.webp"
+                        src="https://cdnb.20m.es/sites/30/2022/04/Colo-ColoOK.jpg"
                         width={150}
                         height={150}
                         alt=""
                         className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"
                     />
-                    <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">Cynthia J. Watts</h5>
-                    <span className="hidden text-gray-400 lg:block">Admin</span>
+                    <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">Colo-colo</h5>
+                    <span className="hidden text-gray-400 lg:block">EternoCampeon</span>
                 </div>
 
                 <ul className="space-y-2 tracking-wide mt-8">
