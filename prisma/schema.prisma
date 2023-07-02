@@ -1,19 +1,86 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+//el generador de prisma-client-js se usa para ejecutar consultas de base de datos en su servidor de aplicaciones.
 generator client {
   provider = "prisma-client-js"
 }
 
+//el datasource bloque define la conexión a su base de datos.
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
+//esto es como se ve el modelo de datos en su base de datos, es como una tabla en SQL.
 model Todo {
   id          String   @id @default(uuid())
   description String
   complete    Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  //esta es una relación de uno a muchos, un usuario puede tener muchos todos.
+  //creo la tabla userId en la tabla todos. y la relaciono con el id de la tabla user.
+  user   User   @relation(fields: [userId], references: [id])
+  //este es el campo que se crea en la tabla todos.
+  userId String
+}
+
+//Auth.JS
+
+model Account {
+  id                       String  @id @default(uuid())
+  userId                   String
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String? @db.Text
+  refresh_token_expires_in Int?
+  access_token             String? @db.Text
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String? @db.Text
+  session_state            String?
+
+  
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(uuid())
+  name          String?
+  password      String?
+  roles         String[]  @default(["user"])
+  isActive      Boolean   @default(true)
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+
+
+  //un usuario puede tener muchas cuentas y sesiones.
+  accounts Account[]
+  sessions Session[]
+
+  //un usuario puede tener muchos todos.
+  todos Todo[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
 }

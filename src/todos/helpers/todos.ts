@@ -1,6 +1,6 @@
 import { Todo } from "@prisma/client";
 
-
+//el sleep lo usamos para simular una peticion a la api
 const sleep = (seconds: number = 0):Promise<boolean> => {
     return new Promise((resolve) => {
       setTimeout(() => {

@@ -5,7 +5,7 @@ import { IoTrashOutline } from 'react-icons/io5';
 
 import * as todosApi from '@/todos/helpers/todos';
 import { useRouter } from 'next/navigation';
-import { createTodo, deleteCompleted } from '../actions/todo-actions';
+import { deleteCompleted } from '../actions/todo-actions';
 
 
 export const NewTodo = () => {
@@ -19,11 +19,13 @@ export const NewTodo = () => {
     const onSubmit = async (e: FormEvent) => {
         e.preventDefault();
         if (description.trim().length === 0) return;
-        await createTodo(description);
+        // await createTodo(description);
+        await todosApi.createTodo(description);
         //todosApi.createTodo(description);
         setDescription('');
         //refresca la pagina de la ruta actual
         // router.refresh();
+        router.refresh();
     }
     /*
         const deleteCompleted = async () => {
